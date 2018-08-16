@@ -1,0 +1,70 @@
+<!--index.wxml-->
+<view class="container">
+  <scroll-view id="scroll-content"
+    scroll-top="{{scroll_top}}"
+    scroll-y="true"
+    class="dialog-part"
+    scroll-into-view="translate-{{toView}}"
+    enable-back-to-top="true"
+    scroll-with-animation="true">
+    <view class="dialog-wrap" id="translate-empty" wx:if="{{!recording && dialogList.length == 0}}">
+      <chat-bubble item="{{initTranslate}}" record-status="0"></chat-bubble>
+    </view>
+    <view wx:for="{{dialogList}}" wx:key="id" class="dialog-wrap" data-index="{{index}}" catchmodaldelete="deleteItem">
+      <chat-bubble item="{{item}}"
+        edit-show="{{index==dialogList.length-1}}"
+        index="{{index}}"
+        current-translate-voice="{{currentTranslateVoice}}"
+        bindtranslate="translateTextAction"
+        bindexpired="expiredAction">
+      </chat-bubble>
+    </view>
+    <view class="dialog-wrap" id="translate-recording" wx:if="{{recording}}">
+      <chat-bubble item="{{currentTranslate}}" record-status="{{recordStatus}}"></chat-bubble>
+    </view>
+    <view id="translate-fake"></view>
+
+  </scroll-view>
+
+  <view class="foot-group" catchlongpress="catchTapEvent">
+    <record-button button-disabled="{{bottomButtonDisabled}}"
+      bindrecordstart="streamRecord"
+      bindrecordend="streamRecordEnd"></record-button>
+  </view>
+</view>
+
+
+
+<!--使用animation属性指定需要执行的动画-->
+<view class='out' style="display:{{isNone?'block':'none'}}"></view> 
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}"> 
+<form bindsubmit='powerDrawer'>   
+  <!--drawer content-->  
+  <view class="drawer_title">邮件信息</view> 
+  <view class="drawer_content" > 
+    <!-- <view class="top grid"> 
+      <label class="title col-0">发件人</label> 
+      <input class="input_base input_h30 col-1" name="youEmail" value="你的邮箱"></input> 
+    </view>  -->
+    <view class="top grid"> 
+      <label class="title col-0">收件人</label> 
+      <input class="input_base input_h30 col-1" name="sendEmail" value="张三"></input> 
+    </view>
+     <view class="top grid"> 
+      <label class="title col-0">邮件标题</label> 
+      <input class="input_base input_h30 col-1" name="emailTitle" value="{{emailData[0].normValue}}"></input> 
+     </view>  
+       <view class="top grid"> 
+      <label class="title col-0">邮件内容</label> 
+      <textarea class="input_base input_h30 col-1 emailContext" name="emailContext" value="{{emailData[1].normValue}}"></textarea> 
+     </view>  
+    <!-- <view class="top bottom grid"> 
+      <label class="title col-0">备注</label> 
+      <input class="input_base input_h30 col-1" name="remarks"></input> 
+    </view>  -->
+  </view> 
+  <!-- <view class="btn_ok" form-type='submit' data-statu="close">确定</view> -->
+    <button class='btn_ok' form-type='submit'>确定</button>
+</form> 
+</view>
+ 

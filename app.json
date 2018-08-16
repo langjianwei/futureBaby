@@ -1,0 +1,21 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/record/index/index",
+    "pages/speechRecognition/index/index",
+    "pages/speechRecognition/edit/edit",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#FFD700",
+    "navigationBarTitleText": "Future小宝",
+    "navigationBarTextStyle":"black"
+  },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.0.9",
+      "provider": "wx069ba97219f66d99"
+    }
+  }
+}

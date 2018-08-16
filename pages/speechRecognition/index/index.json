@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "bottom-button": "../../../components/bottom-button/index",
+    "record-button": "../../../components/record-button/index",
+    "chat-bubble": "../../../components/chat-bubble/index",
+    "result-bubble": "../../../components/result-bubble/index"
+  }
+}
